@@ -1,0 +1,237 @@
+/* Pura screen blur aur dark background */
+.overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.85); /* Zyadah dark */
+  backdrop-filter: blur(8px);       /* Blur effect */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20000;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Card Design */
+.modal {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 450px; /* Thora chora card */
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Dark Mode Support */
+[data-theme='dark'] .modal {
+  background: #1a1b26;
+  border: 1px solid #2f334d;
+  color: #fff;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  text-align: center;
+  color: #1a1b26;
+}
+
+[data-theme='dark'] .header h2 {
+  color: #fff;
+}
+
+.header p {
+  text-align: center;
+  color: #666;
+  margin-top: 5px;
+  font-size: 0.9rem;
+}
+
+/* Close Button */
+.close {
+  position: absolute;
+  top: 15px; right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #999;
+  transition: color 0.2s;
+}
+
+.close:hover {
+  color: #ff4d4f;
+}
+
+/* Social Buttons */
+.socialButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.googleBtn, .githubBtn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: white;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  font-size: 0.95rem;
+}
+
+[data-theme='dark'] .googleBtn, 
+[data-theme='dark'] .githubBtn {
+  background: #24283b;
+  border-color: #414868;
+  color: white;
+}
+
+.googleBtn:hover, .githubBtn:hover {
+  background: #f5f5f5;
+  transform: translateY(-1px);
+}
+
+[data-theme='dark'] .googleBtn:hover, 
+[data-theme='dark'] .githubBtn:hover {
+  background: #2f334d;
+}
+
+/* Divider (OR line) */
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #888;
+  font-size: 0.8rem;
+  margin: 10px 0;
+}
+
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #ddd;
+}
+
+[data-theme='dark'] .divider::before, 
+[data-theme='dark'] .divider::after {
+  border-bottom: 1px solid #414868;
+}
+
+.divider span {
+  padding: 0 10px;
+}
+
+/* Form Styles */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.inputGroup label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-left: 2px;
+}
+
+input, select {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  background: #f9f9f9;
+  outline: none;
+  transition: border 0.2s;
+}
+
+[data-theme='dark'] input, 
+[data-theme='dark'] select {
+  background: #16161e;
+  border-color: #414868;
+  color: white;
+}
+
+input:focus, select:focus {
+  border-color: #6200ea;
+  background: white;
+}
+
+[data-theme='dark'] input:focus {
+  background: #1a1b26;
+}
+
+/* Side by side extras */
+.extrasRow {
+  display: flex;
+  gap: 10px;
+}
+
+.selectGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.selectGroup label {
+  font-size: 0.8rem;
+}
+
+/* Submit Button */
+.submitBtn {
+  background: linear-gradient(135deg, #6200ea 0%, #7c3aed 100%);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 4px 15px rgba(98, 0, 234, 0.4);
+  transition: transform 0.2s;
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(98, 0, 234, 0.6);
+}
+
+/* Footer Switch */
+.footer {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.footer span {
+  color: #6200ea;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.footer span:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}

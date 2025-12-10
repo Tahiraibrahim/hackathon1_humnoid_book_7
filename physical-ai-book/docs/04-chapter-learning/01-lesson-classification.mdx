@@ -1,0 +1,331 @@
+---
+title: "Learning from Data: Classification"
+description: "Teach robots to recognize patterns using machine learning classification algorithms"
+sidebar_position: 1
+difficulty: "Intermediate/Advanced"
+duration_minutes: 100
+prerequisites: ["Navigation Systems (Lesson 3.3)"]
+hardware_budget: "Included"
+keywords: ["machine learning", "classification", "scikit-learn", "training data"]
+---
+
+import { PersonalizationContextButton } from '@site/src/components/PersonalizationContextButton';
+import BilingualContent from '@site/src/components/BilingualContent';
+
+<PersonalizationContextButton />
+
+<BilingualContent
+  en={<h2>Learning Objectives</h2>}
+  ur={<h2 style={{textAlign: 'right'}}>سیکھنے کے مقاصد</h2>}
+/>
+
+<BilingualContent
+  en={
+    <ul>
+      <li>Collect training data from robot sensors</li>
+      <li>Train classification models with scikit-learn</li>
+      <li>Evaluate model performance</li>
+      <li>Deploy trained models on robot</li>
+      <li>Understand overfitting and generalization</li>
+    </ul>
+  }
+  ur={
+    <ul style={{textAlign: 'right'}}>
+      <li>روبوٹ سینسرز سے ٹریننگ ڈیٹا جمع کریں</li>
+      <li>scikit-learn کے ساتھ کلاسیفیکیشن ماڈلز کو ٹرین کریں</li>
+      <li>ماڈل کی کارکردگی کا جائزہ لیں</li>
+      <li>ٹرین شدہ ماڈلز کو روبوٹ پر تعینات کریں</li>
+      <li>اوور فٹنگ اور جنرلائزیشن کو سمجھیں</li>
+    </ul>
+  }
+/>
+
+<BilingualContent
+  en={<h2>Core Concepts</h2>}
+  ur={<h2 style={{textAlign: 'right'}}>بنیادی تصورات</h2>}
+/>
+
+<BilingualContent
+  en={<h3>Classification Task</h3>}
+  ur={<h3 style={{textAlign: 'right'}}>کلاسیفیکیشن ٹاسک</h3>}
+/>
+
+<BilingualContent
+  en={
+    <div>
+      <p>Classification assigns inputs to predefined categories:</p>
+      <ul>
+        <li><strong>Example</strong>: Classify surface type (tile, carpet, wood)</li>
+        <li><strong>Input</strong>: Sensor data (accelerometer readings)</li>
+        <li><strong>Output</strong>: Predicted category</li>
+      </ul>
+    </div>
+  }
+  ur={
+    <div style={{textAlign: 'right'}}>
+      <p>کلاسیفیکیشن ان پٹ کو پہلے سے طے شدہ زمروں میں تفویض کرتی ہے:</p>
+      <ul>
+        <li><strong>مثال</strong>: سطح کی قسم کی درجہ بندی کریں (ٹائل، قالین، لکڑی)</li>
+        <li><strong>ان پٹ</strong>: سینسر ڈیٹا (ایکسلرومیٹر ریڈنگز)</li>
+        <li><strong>آؤٹ پٹ</strong>: متوقع زمرہ</li>
+      </ul>
+    </div>
+  }
+/>
+
+<BilingualContent
+  en={<h3>Training Process</h3>}
+  ur={<h3 style={{textAlign: 'right'}}>ٹریننگ کا عمل</h3>}
+/>
+
+<BilingualContent
+  en={
+    <ol>
+      <li><strong>Collect</strong>: Gather labeled training data</li>
+      <li><strong>Prepare</strong>: Extract features, split train/test</li>
+      <li><strong>Train</strong>: Fit model to training data</li>
+      <li><strong>Evaluate</strong>: Measure accuracy on test data</li>
+      <li><strong>Deploy</strong>: Use model on robot</li>
+    </ol>
+  }
+  ur={
+    <ol style={{textAlign: 'right'}}>
+      <li><strong>جمع کریں</strong>: لیبل شدہ ٹریننگ ڈیٹا اکٹھا کریں</li>
+      <li><strong>تیار کریں</strong>: فیچرز نکالیں، ٹرین/ٹیسٹ تقسیم کریں</li>
+      <li><strong>ٹرین</strong>: ماڈل کو ٹریننگ ڈیٹا پر فٹ کریں</li>
+      <li><strong>جانچ</strong>: ٹیسٹ ڈیٹا پر درستگی ماپیں</li>
+      <li><strong>تعینات</strong>: روبوٹ پر ماڈل استعمال کریں</li>
+    </ol>
+  }
+/>
+
+<BilingualContent
+  en={<h3>Algorithms</h3>}
+  ur={<h3 style={{textAlign: 'right'}}>الگورتھم</h3>}
+/>
+
+<BilingualContent
+  en={
+    <div>
+      <p><strong>k-Nearest Neighbors:</strong></p>
+      <ul>
+        <li>Simple, interpretable</li>
+        <li>Stores training data, classifies by nearest neighbors</li>
+        <li>Good for small datasets</li>
+      </ul>
+
+      <p><strong>Decision Trees:</strong></p>
+      <ul>
+        <li>Creates interpretable rules</li>
+        <li>Fast prediction</li>
+        <li>Prone to overfitting</li>
+      </ul>
+
+      <p><strong>Random Forest:</strong></p>
+      <ul>
+        <li>Multiple trees voted together</li>
+        <li>More robust</li>
+        <li>Better generalization</li>
+      </ul>
+    </div>
+  }
+  ur={
+    <div style={{textAlign: 'right'}}>
+      <p><strong>k-قریب ترین پڑوسی:</strong></p>
+      <ul>
+        <li>سادہ، قابل تشریح</li>
+        <li>ٹریننگ ڈیٹا محفوظ کرتا ہے، قریب ترین پڑوسیوں سے درجہ بندی کرتا ہے</li>
+        <li>چھوٹے ڈیٹا سیٹس کے لیے اچھا</li>
+      </ul>
+
+      <p><strong>ڈیسیژن ٹریز:</strong></p>
+      <ul>
+        <li>قابل تشریح اصول بناتا ہے</li>
+        <li>تیز پیشگوئی</li>
+        <li>اوور فٹنگ کا خطرہ</li>
+      </ul>
+
+      <p><strong>رینڈم فاریسٹ:</strong></p>
+      <ul>
+        <li>متعدد درخت مل کر ووٹ کرتے ہیں</li>
+        <li>زیادہ مضبوط</li>
+        <li>بہتر جنرلائزیشن</li>
+      </ul>
+    </div>
+  }
+/>
+
+<BilingualContent
+  en={<h2>Code Example: Surface Classification</h2>}
+  ur={<h2 style={{textAlign: 'right'}}>کوڈ مثال: سطح کی درجہ بندی</h2>}
+/>
+
+```python
+"""
+Train robot to recognize walking surfaces using scikit-learn
+روبوٹ کو چلنے کی سطحوں کو پہچاننے کی ٹریننگ دیں
+"""
+
+import numpy as np
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+import pickle
+
+# Training data: accelerometer readings from different surfaces
+# ٹریننگ ڈیٹا: مختلف سطحوں سے ایکسلرومیٹر ریڈنگز
+# Format: [ax, ay, az] in g-force
+data = np.array([
+    [0.1, 0.2, 9.8],  # Tile sample 1 | ٹائل نمونہ 1
+    [0.15, 0.18, 9.8],  # Tile sample 2 | ٹائل نمونہ 2
+    [0.2, 1.5, 9.7],  # Carpet sample 1 | قالین نمونہ 1
+    [0.25, 1.8, 9.6],  # Carpet sample 2 | قالین نمونہ 2
+    # ... collect more samples from your robot ...
+])
+
+# Labels: 0=tile, 1=carpet, 2=wood
+# لیبلز: 0=ٹائل، 1=قالین، 2=لکڑی
+labels = np.array([0, 0, 1, 1, 2, 2])
+
+# Split: 80% training, 20% testing
+# تقسیم: 80% ٹریننگ، 20% ٹیسٹنگ
+X_train, X_test, y_train, y_test = train_test_split(
+    data, labels, test_size=0.2, random_state=42
+)
+
+# Train Random Forest | رینڈم فاریسٹ ٹرین کریں
+model = RandomForestClassifier(n_estimators=10, random_state=42)
+model.fit(X_train, y_train)
+
+# Evaluate | جانچ
+predictions = model.predict(X_test)
+accuracy = accuracy_score(y_test, predictions)
+print(f"Model Accuracy: {accuracy:.1%}")
+
+# Save for deployment | تعیناتی کے لیے محفوظ کریں
+with open('surface_classifier.pkl', 'wb') as f:
+    pickle.dump(model, f)
+```
+
+<BilingualContent
+  en={<h2>Hands-On Exercise: Train Surface Classifier</h2>}
+  ur={<h2 style={{textAlign: 'right'}}>عملی مشق: سطح کی درجہ بندی کو ٹرین کریں</h2>}
+/>
+
+<BilingualContent
+  en={
+    <div>
+      <p><strong>Data Collection:</strong></p>
+      <ol>
+        <li>Mount accelerometer on robot</li>
+        <li>Move slowly on each surface (10 passes each)</li>
+        <li>Record 50+ samples per surface</li>
+        <li>Save as CSV file</li>
+      </ol>
+
+      <p><strong>Training:</strong></p>
+      <ol>
+        <li>Load CSV data into Python</li>
+        <li>Train model with scikit-learn</li>
+        <li>Check accuracy (aim for &gt;80%)</li>
+      </ol>
+
+      <p><strong>Deployment:</strong></p>
+      <ol>
+        <li>Upload trained model to robot</li>
+        <li>Test on new surfaces</li>
+        <li>Measure real-world accuracy</li>
+      </ol>
+    </div>
+  }
+  ur={
+    <div style={{textAlign: 'right'}}>
+      <p><strong>ڈیٹا جمع کرنا:</strong></p>
+      <ol>
+        <li>روبوٹ پر ایکسلرومیٹر لگائیں</li>
+        <li>ہر سطح پر آہستہ سے چلیں (ہر ایک پر 10 بار)</li>
+        <li>ہر سطح کے 50+ نمونے ریکارڈ کریں</li>
+        <li>CSV فائل کے طور پر محفوظ کریں</li>
+      </ol>
+
+      <p><strong>ٹریننگ:</strong></p>
+      <ol>
+        <li>CSV ڈیٹا کو Python میں لوڈ کریں</li>
+        <li>scikit-learn کے ساتھ ماڈل ٹرین کریں</li>
+        <li>درستگی چیک کریں (80% سے زیادہ کا ہدف)</li>
+      </ol>
+
+      <p><strong>تعیناتی:</strong></p>
+      <ol>
+        <li>ٹرین شدہ ماڈل کو روبوٹ پر اپ لوڈ کریں</li>
+        <li>نئی سطحوں پر ٹیسٹ کریں</li>
+        <li>حقیقی دنیا کی درستگی ماپیں</li>
+      </ol>
+    </div>
+  }
+/>
+
+<BilingualContent
+  en={<h2>Troubleshooting</h2>}
+  ur={<h2 style={{textAlign: 'right'}}>مسائل کا حل</h2>}
+/>
+
+<BilingualContent
+  en={
+    <div>
+      <h3>Low test accuracy</h3>
+      <ul>
+        <li>Collect more training data</li>
+        <li>Add more features (gyroscope, etc.)</li>
+        <li>Use simpler model (kNN instead of Random Forest)</li>
+      </ul>
+
+      <h3>Perfect training but poor test accuracy</h3>
+      <ul>
+        <li><strong>Overfitting</strong>: Too many features, not enough data</li>
+        <li><strong>Fix</strong>: Collect more samples, reduce features</li>
+      </ul>
+    </div>
+  }
+  ur={
+    <div style={{textAlign: 'right'}}>
+      <h3>کم ٹیسٹ درستگی</h3>
+      <ul>
+        <li>مزید ٹریننگ ڈیٹا جمع کریں</li>
+        <li>مزید فیچرز شامل کریں (جائروسکوپ وغیرہ)</li>
+        <li>سادہ ماڈل استعمال کریں (رینڈم فاریسٹ کی جگہ kNN)</li>
+      </ul>
+
+      <h3>بہترین ٹریننگ لیکن خراب ٹیسٹ درستگی</h3>
+      <ul>
+        <li><strong>اوور فٹنگ</strong>: بہت زیادہ فیچرز، کافی ڈیٹا نہیں</li>
+        <li><strong>حل</strong>: مزید نمونے جمع کریں، فیچرز کم کریں</li>
+      </ul>
+    </div>
+  }
+/>
+
+<BilingualContent
+  en={<h2>Next Steps</h2>}
+  ur={<h2 style={{textAlign: 'right'}}>اگلے مراحل</h2>}
+/>
+
+<BilingualContent
+  en={
+    <p>
+      You've implemented <strong>supervised learning</strong>! Lesson 4.2 covers <strong>reinforcement learning</strong> - learning through trial and error.
+    </p>
+  }
+  ur={
+    <p style={{textAlign: 'right'}}>
+      آپ نے <strong>سپروائزڈ لرننگ</strong> نافذ کر دی! سبق 4.2 میں <strong>ریئنفورسمنٹ لرننگ</strong> شامل ہے - آزمائش اور غلطی سے سیکھنا۔
+    </p>
+  }
+/>
+
+---
+
+<BilingualContent
+  en={<p>Next: Lesson 4.2 - Reinforcement Learning Intro!</p>}
+  ur={<p style={{textAlign: 'right'}}>اگلا: سبق 4.2 - ریئنفورسمنٹ لرننگ کا تعارف!</p>}
+/>

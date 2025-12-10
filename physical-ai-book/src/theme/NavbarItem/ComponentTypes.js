@@ -1,7 +1,8 @@
 import ComponentTypes from '@theme-original/NavbarItem/ComponentTypes';
-import UrduButton from '@site/src/components/NavbarUrduButton';
+// Aapka Urdu Button yahan para hai
+import UrduTranslationButton from '@site/src/components/UrduTranslationButton'; 
 
 export default {
   ...ComponentTypes,
-  'custom-urdu-button': UrduButton,
+  'custom-urdu-button': UrduTranslationButton, 
 };

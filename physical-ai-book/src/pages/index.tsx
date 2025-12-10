@@ -1,6 +1,6 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
-import Link from '@docusaurus/Link';
+import Link from '@docusaurus/Link'; // Ab sirf ye Link use ho raha hai
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
@@ -8,8 +8,10 @@ import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
 
+// Ab koi hook ya function nahi hai yahan
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
+
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
@@ -23,6 +25,22 @@ function HomepageHeader() {
             to="/docs/intro">
             Get Started
           </Link>
+          
+          
+          <Link
+           className="button button--primary button--lg"
+           to="/docs/04-chapter-learning/01-lesson-classification"
+           style={{
+             marginLeft: '10px',
+             background: 'linear-gradient(90deg, #6200ea 0%, #a855f7 100%)',
+             color: 'white',
+             border: 'none',
+             fontWeight: 'bold',
+             borderRadius: '5px',
+             cursor: 'pointer',
+          }}>
+          Start Learning
+        </Link>
         </div>
       </div>
     </header>

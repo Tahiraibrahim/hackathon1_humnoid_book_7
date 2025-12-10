@@ -2,20 +2,22 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+
 const config: Config = {
   title: 'Physical AI Book',
   tagline: 'Master the art of building intelligent machines that see, think, and act in the real world.',
   favicon: 'img/favicon.ico',
 
-  // --- GITHUB DEPLOYMENT SETTINGS (Yahan Sab Theek Kar Diya Hai) ---
-  url: 'https://Tahiraibrahim.github.io', // Sahi Link
-  baseUrl: '/', // Repository ka Sahi Naam (Case Sensitive)
+  // --- DEPLOYMENT SETTINGS (Vercel ke liye Optimized) ---
+  url: 'https://Tahiraibrahim.github.io', 
+  baseUrl: '/', // Vercel ke liye ye "/" hi hona chahiye
   organizationName: 'Tahiraibrahim',
   projectName: 'Hackathon_Humnoid_Robotics_AI',
-  deploymentBranch: 'gh-pages', // Ye line Zaroori thi
-  trailingSlash: false, // GitHub Pages ke liye best practice
+  deploymentBranch: 'gh-pages',
+  trailingSlash: false,
 
-  onBrokenLinks: 'warn', // Error nahi, sirf warning dega
+  onBrokenLinks: 'warn', 
   onBrokenMarkdownLinks: 'warn',
 
   i18n: {
@@ -42,7 +44,7 @@ const config: Config = {
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
-      defaultMode: 'dark', // Cyberpunk Theme ke liye Dark default rakhein
+      defaultMode: 'dark', // Cyberpunk Theme
       disableSwitch: false,
       respectPrefersColorScheme: false,
     },
@@ -59,8 +61,14 @@ const config: Config = {
           position: 'left',
           label: 'Chapters',
         },
-        // Agar Urdu Button ka component nahi hai to ye line hata dein warna error aayega
-        // { type: 'custom-urdu-button', position: 'right' }, 
+
+        // --- URDU BUTTON ---
+        {
+          type: 'custom-urdu-button',
+          position: 'right'
+        },
+        // -----
+
         {
           href: 'https://github.com/Tahiraibrahim/Hackathon_Humnoid_Robotics_AI',
           label: 'GitHub',

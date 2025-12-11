@@ -29,7 +29,7 @@ function HomepageHeader() {
           
           <Link
            className="button button--primary button--lg"
-           to="/docs/04-chapter-learning/01-lesson-classification"
+           to="/docs/learning/classification"
            style={{
              marginLeft: '10px',
              background: 'linear-gradient(90deg, #6200ea 0%, #a855f7 100%)',

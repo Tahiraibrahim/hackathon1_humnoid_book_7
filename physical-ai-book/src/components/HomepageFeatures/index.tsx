@@ -2,6 +2,7 @@ import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
+import Link from '@docusaurus/Link';
 
 type FeatureItem = {
   title: string;
@@ -183,18 +184,23 @@ export default function HomepageFeatures(): ReactNode {
               Explore 5 comprehensive chapters with 15 detailed lessons designed 
               to make you proficient in Physical AI systems.
             </p>
-            <a 
-              href="/physical-ai-book/docs/intro" 
+            
+            {/* --- YAHAN CHANGE KIYA HAI --- */}
+            <Link 
+              to="/docs/learning/classification" 
               className="button button--lg"
               style={{
                 marginRight: '1rem',
                 backgroundColor: '#6200ea',
                 color: 'white',
-                border: 'none'
+                border: 'none',
+                textDecoration: 'none'
               }}
             >
               Start Learning Now 📖
-            </a>
+            </Link>
+            {/* ----------------------------- */}
+
             <a 
               href="https://github.com/physical-ai-book" 
               className="button button--secondary button--lg"

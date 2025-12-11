@@ -8,7 +8,7 @@ import { auth } from "./lib/auth.js"; // Note: .js extension zaroori hai ESM mei
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 7860;
 
 app.use(express.json());
 app.use(cors({

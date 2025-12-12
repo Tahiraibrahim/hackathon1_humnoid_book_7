@@ -28,7 +28,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
 
-  const AUTH_URL = "http://localhost:4000";
+  const AUTH_URL = "https://itstahiraibrahim-auth-server.hf.space";
 
   useEffect(() => {
     const storedUser = localStorage.getItem('hackathon_user');

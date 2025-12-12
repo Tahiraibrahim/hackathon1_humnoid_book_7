@@ -1,21 +1,15 @@
-# Node.js use kar rahe hain
-FROM node:20
+# Python 3.9 use karenge
+FROM python:3.9
 
-# App ka folder banaya
-WORKDIR /app
+# Container mein folder banaya
+WORKDIR /code
 
-# Files copy ki aur install kiya
-COPY package*.json ./
-RUN npm install
+# Requirements file copy ki aur install ki
+COPY requirements.txt /code/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-# Baqi code copy kiya
-COPY . .
+# Pura backend folder copy kiya
+COPY backend /code/backend
 
-# Code ko build kiya
-RUN npm run build
-
-# Hugging Face port 7860 use karta hai
-EXPOSE 7860
-
-# Server start
-CMD ["npm", "start"]
+# Server start kiya (Port 7860 par)
+CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "7860"]

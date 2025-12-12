@@ -21,12 +21,15 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Configuration
+# ✅ FIX 1: Variable name updated to match Hugging Face Secret (DATABASE_URL)
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 QDRANT_URL = os.getenv("QDRANT_URL")
 QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
-NEON_DATABASE_URL = os.getenv("NEON_DATABASE_URL")
+NEON_DATABASE_URL = os.getenv("DATABASE_URL") 
 COLLECTION_NAME = "book-embeddings"
-ASSISTANT_ID = os.getenv("ASSISTANT_ID")  # Set this after creating an assistant
+ASSISTANT_ID = os.getenv("ASSISTANT_ID")
+# ✅ FIX 2: Auth Server URL ab Environment se aayega (Secure)
+AUTH_SERVER_URL = os.getenv("BETTER_AUTH_URL", "http://localhost:4000")
 
 # Logging
 logging.basicConfig(level=logging.INFO)
@@ -84,10 +87,12 @@ async def lifespan(app: FastAPI):
         logger.info("✓ Connected to OpenAI")
 
         # Initialize database pool
+        # ✅ Added ssl="require" for Neon DB security
         db_pool = await asyncpg.create_pool(
             NEON_DATABASE_URL,
             min_size=5,
             max_size=20,
+            ssl="require" 
         )
         logger.info("✓ Connected to Neon Postgres")
 
@@ -131,7 +136,7 @@ app = FastAPI(title="RAG Chatbot API", lifespan=lifespan)
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, restrict this to your domain
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -167,13 +172,12 @@ async def get_user_background(user_id: Optional[str]) -> dict:
         return {"software": "", "hardware": ""}
 
     try:
-        AUTH_SERVER_URL = "http://localhost:4000"
-        response_data = await openai_client.embeddings.create(
-            model="text-embedding-3-small",
-            input="dummy"
-        )
-
-        # Use asyncpg to fetch user background from auth database
+        # ✅ FIX: Using Dynamic URL instead of Localhost
+        # AUTH_SERVER_URL is now loaded from top config
+        
+        # Note: In a real microservice setup, you'd fetch from API, 
+        # but since we share the DB, we can query directly:
+        
         async with db_pool.acquire() as conn:
             result = await conn.fetchrow(
                 'SELECT software_background, hardware_background FROM "user" WHERE id = $1',

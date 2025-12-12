@@ -23,7 +23,7 @@ const ChatBot: React.FC = () => {
   const selectionButtonRef = useRef<HTMLDivElement>(null);
 
   // ✅ Process env hata kar direct link lagaya hai taake crash na ho
-  const API_BASE_URL = "http://127.0.0.1:8000";
+  const API_BASE_URL = "https://itstahiraibrahim-chatbot-backend.hf.space";
 
   // Auto-scroll to bottom
   const scrollToBottom = () => {

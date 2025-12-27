@@ -9,7 +9,7 @@
 ## 🌟 Project Overview
 The **Physical AI Book** is a Next-Gen Educational Platform designed to teach "Sim-to-Real" Robotics. Unlike static PDFs, this platform is **Alive**. It bridges the gap between software (AI) and hardware (Robotics) using an interactive, context-aware interface.
 
-Most robotics resources are static and hard to understand. We solved this by building a **Context-Aware Agentic Platform** that features a custom RAG Chatbot, instant Urdu localization, and role-based content personalization.
+We solved the problem of static learning by building a **Context-Aware Agentic Platform** that features a custom RAG Chatbot, instant Urdu localization, and role-based content personalization.
 
 ---
 
@@ -25,34 +25,89 @@ We implemented a modular **Agentic Architecture** mirroring the industry-standar
 3.  **Retrieval Agent:** When a user asks a question, the system performs a **Semantic Search** (Cosine Similarity) to find the exact paragraph in the book.
 4.  **Generation:** The retrieved context + user query is sent to the LLM (**OpenAI GPT-4o / Qwen**) to generate a factually accurate response.
 
-### ✨ Key Capabilities
-- **Context-Awareness:** The bot answers strictly based on the provided curriculum. It won't hallucinate generic answers.
-- **Code Explanations:** It can explain complex Python/C++ code snippets found in the book.
-- **Fast & Private:** Uses local embedding processing and efficient vector search via Qdrant.
+### 🔄 How the Data Flows (System Architecture)
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant Frontend as Chat Widget (React)
-    participant Backend as FastAPI Agent
-    participant DB as Qdrant (Vector DB)
-    participant LLM as OpenAI/Qwen Model
+Since we are using a custom RAG implementation, here is how the request travels:
 
-    User->>Frontend: "How does SLAM work?"
-    Frontend->>Backend: POST /chat (User Query)
-    Backend->>DB: Search Embeddings (Query)
-    DB-->>Backend: Return Top 3 Relevant Chunks
-    Backend->>LLM: Send Prompt + Context Chunks
-    LLM-->>Backend: Generate Answer based on Book
-    Backend-->>Frontend: Return AI Response
-    Frontend-->>User: Display Answer
-🚀 Key Features (Hackathon Requirements)1. 🇵🇰 Instant Localization (Urdu Support)Education should have no barriers.One-Click Translation: A dedicated global toggle instantly converts headings, concepts, and navigation into Urdu.Font Optimization: Uses Noto Nastaliq for beautiful readability and cultural relevance.2. 🎨 Adaptive Personalization EngineThe content morphs based on who YOU are.Role-Based Content: Users select their background (Software Engineer vs. Hardware Engineer).Dynamic Rendering:Software Engineers see Python code snippets & Algorithm logic 🐍.Hardware Engineers see Wiring Diagrams, Sensors, and Circuit Logic 🔌.3. 🔐 Simulated Authentication SystemA robust Mock Auth System allowing users to Signup & Login.Persists user identity ("Welcome, [Name]") and preferences across sessions using LocalStorage for a seamless demo experience.🛠️ Tech StackComponentTechnology UsedPurposeFrontendReact.js, DocusaurusStatic Site Generation & UIBackend APIPython FastAPIHigh-performance Async ServerVector DBQdrantStoring embeddings for RAG retrievalLLM EngineOpenAI / QwenThe intelligence behind the AgentState MgmtReact Context APIHandling Auth & Personalization state⚡ How to Run LocallyPrerequisitesNode.js & npmPython 3.9+1. Setup the Backend (The Brain)Bashcd backend
+```text
+[ USER ] asks a question 
+   ⬇️
+[ FRONTEND ] (React Chat Widget) sends POST request
+   ⬇️
+[ BACKEND ] (FastAPI) converts text to Embeddings
+   ⬇️
+[ QDRANT DB ] searches for relevant book chapters
+   ⬇️
+[ LLM ] (OpenAI/Qwen) generates answer using book context
+   ⬇️
+[ USER ] receives the accurate answer
+🚀 Key Features (Hackathon Requirements)
+1. 🇵🇰 Instant Localization (Urdu Support)
+Education should have no barriers.
+
+One-Click Translation: A dedicated global toggle instantly converts headings, concepts, and navigation into Urdu.
+
+Font Optimization: Uses Noto Nastaliq for beautiful readability and cultural relevance.
+
+2. 🎨 Adaptive Personalization Engine
+The content morphs based on who YOU are.
+
+Role-Based Content: Users select their background (Software Engineer vs. Hardware Engineer).
+
+Dynamic Rendering:
+
+Software Engineers see Python code snippets & Algorithm logic 🐍.
+
+Hardware Engineers see Wiring Diagrams, Sensors, and Circuit Logic 🔌.
+
+3. 🔐 Simulated Authentication System
+A robust Mock Auth System allowing users to Signup & Login.
+
+Persists user identity ("Welcome, [Name]") and preferences across sessions using LocalStorage for a seamless demo experience.
+
+🛠️ Tech Stack
+Component	Technology Used	Purpose
+Frontend	React.js, Docusaurus	Static Site Generation & UI
+Backend API	Python FastAPI	High-performance Async Server
+Vector DB	Qdrant	Storing embeddings for RAG retrieval
+LLM Engine	OpenAI / Qwen	The intelligence behind the Agent
+State Mgmt	React Context API	Handling Auth & Personalization state
+
+Export to Sheets
+
+⚡ How to Run Locally
+Prerequisites
+Node.js & npm
+
+Python 3.9+
+
+1. Setup the Backend (The Brain)
+Bash
+
+cd backend
 # Install dependencies (FastAPI, Qdrant, OpenAI, etc.)
 pip install -r requirements.txt
 
 # Run the RAG Server
 uvicorn server:app --reload
-The server will start at http://127.0.0.1:80002. Setup the Frontend (The Website)Bash# Open a new terminal in the root folder
+The server will start at http://127.0.0.1:8000
+
+2. Setup the Frontend (The Website)
+Bash
+
+# Open a new terminal in the root folder
 npm install
 npm run start
-The website will launch at http://localhost:3000🏆 Why This Project WinsThis platform demonstrates a full-stack implementation of Embodied AI Education:Agentic Workflow: Using custom RAG + Qdrant.Inclusivity: Urdu Language Support.Adaptability: Hardware vs. Software personalization engines.👥 Contributors[Your Name] - Lead Developer & AI Architect
+The website will launch at http://localhost:3000
+
+🏆 Why This Project Wins
+This platform demonstrates a full-stack implementation of Embodied AI Education:
+
+Agentic Workflow: Using custom RAG + Qdrant.
+
+Inclusivity: Urdu Language Support.
+
+Adaptability: Hardware vs. Software personalization engines.
+
+👥 Contributors
+[Your Name] - Lead Developer & AI Architect

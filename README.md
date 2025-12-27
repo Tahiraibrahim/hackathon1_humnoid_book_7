@@ -1,4 +1,4 @@
-🤖 The Physical AI Book: Embodied Intelligence Platform
+# 🤖 The Physical AI Book: Embodied Intelligence Platform
 
 ![Hackathon Status](https://img.shields.io/badge/Hackathon-Submission-neon?style=for-the-badge)
 ![Architecture](https://img.shields.io/badge/Architecture-RAG_%7C_Agentic-purple?style=for-the-badge)
@@ -46,10 +46,6 @@ sequenceDiagram
     LLM-->>Backend: Generate Answer based on Book
     Backend-->>Frontend: Return AI Response
     Frontend-->>User: Display Answer
-🚀 Key Features (Hackathon Requirements)
-1. 🇵🇰 Instant Localization (Urdu Support)
-Education should have no barriers.
-
 🚀 Key Features (Hackathon Requirements)1. 🇵🇰 Instant Localization (Urdu Support)Education should have no barriers.One-Click Translation: A dedicated global toggle instantly converts headings, concepts, and navigation into Urdu.Font Optimization: Uses Noto Nastaliq for beautiful readability and cultural relevance.2. 🎨 Adaptive Personalization EngineThe content morphs based on who YOU are.Role-Based Content: Users select their background (Software Engineer vs. Hardware Engineer).Dynamic Rendering:Software Engineers see Python code snippets & Algorithm logic 🐍.Hardware Engineers see Wiring Diagrams, Sensors, and Circuit Logic 🔌.3. 🔐 Simulated Authentication SystemA robust Mock Auth System allowing users to Signup & Login.Persists user identity ("Welcome, [Name]") and preferences across sessions using LocalStorage for a seamless demo experience.🛠️ Tech StackComponentTechnology UsedPurposeFrontendReact.js, DocusaurusStatic Site Generation & UIBackend APIPython FastAPIHigh-performance Async ServerVector DBQdrantStoring embeddings for RAG retrievalLLM EngineOpenAI / QwenThe intelligence behind the AgentState MgmtReact Context APIHandling Auth & Personalization state⚡ How to Run LocallyPrerequisitesNode.js & npmPython 3.9+1. Setup the Backend (The Brain)Bashcd backend
 # Install dependencies (FastAPI, Qdrant, OpenAI, etc.)
 pip install -r requirements.txt

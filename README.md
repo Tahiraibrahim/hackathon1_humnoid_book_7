@@ -55,4 +55,4 @@ uvicorn server:app --reload
 The server will start at http://127.0.0.1:80002. Setup the Frontend (The Website)Bash# Open a new terminal in the root folder
 npm install
 npm run start
-The website will launch at http://localhost:3000🏆 Why This Project WinsThis platform demonstrates a full-stack implementation of Embodied AI Education:Agentic Workflow: Using custom RAG + Qdrant.Inclusivity: Urdu Language Support.Adaptability: Hardware vs. Software personalization engines.
+The website will launch at http://localhost:3000🏆 Why This Project WinsThis platform demonstrates a full-stack implementation of Embodied AI Education:Agentic Workflow: Using custom RAG + Qdrant.Inclusivity: Urdu Language Support.Adaptability: Hardware vs. Software personalization engines.👥 Contributors[Your Name] - Lead Developer & AI Architect

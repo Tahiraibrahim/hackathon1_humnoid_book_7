@@ -1,5 +1,9 @@
- 🤖 The Physical AI Book: Embodied Intelligence Platform
- 
+🤖 The Physical AI Book: Embodied Intelligence Platform
+
+![Hackathon Status](https://img.shields.io/badge/Hackathon-Submission-neon?style=for-the-badge)
+![Architecture](https://img.shields.io/badge/Architecture-RAG_%7C_Agentic-purple?style=for-the-badge)
+![Tech Stack](https://img.shields.io/badge/Stack-FastAPI_%7C_OpenAI_%7C_Qdrant-blue?style=for-the-badge)
+
 > **"Master the art of building intelligent machines that see, think, and act in the real world."**
 
 ## 🌟 Project Overview
@@ -51,4 +55,4 @@ uvicorn server:app --reload
 The server will start at http://127.0.0.1:80002. Setup the Frontend (The Website)Bash# Open a new terminal in the root folder
 npm install
 npm run start
-The website will launch at http://localhost:3000🏆 Why This Project WinsThis platform demonstrates a full-stack implementation of Embodied AI Education:Agentic Workflow: Using custom RAG + Qdrant.Inclusivity: Urdu Language Support.Adaptability: Hardware vs. Software personalization engines.👥 Contributors[Your Name] - Lead Developer & AI Architect
+The website will launch at http://localhost:3000🏆 Why This Project WinsThis platform demonstrates a full-stack implementation of Embodied AI Education:Agentic Workflow: Using custom RAG + Qdrant.Inclusivity: Urdu Language Support.Adaptability: Hardware vs. Software personalization engines.
